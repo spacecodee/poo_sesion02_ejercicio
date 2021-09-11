@@ -5,6 +5,7 @@ import com.group04.session_02.model.ListBooks;
 import java.awt.HeadlessException;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,6 +30,14 @@ public class UtilsBooks {
     public void addBook(Books book) {
         try {
             for (int i = 0; i < this.listBooks.getListBooks().length; i++) {
+                if (this.listBooks.getListBooks()[i] != null) {
+                    if (this.listBooks.getListBooks()[i].getTilte().equalsIgnoreCase(book.getTilte())
+                            && this.listBooks.getListBooks()[i].getAuthor().equalsIgnoreCase(book.getAuthor())) {
+                        JOptionPane.showMessageDialog(null, "El libro ya ha sido agregado");
+                        break;
+                    }
+                }
+
                 if (this.listBooks.getListBooks()[i] == null) {
                     this.listBooks.getListBooks()[i] = book;
                     JOptionPane.showMessageDialog(null, "Libro Agregado");
@@ -40,8 +49,21 @@ public class UtilsBooks {
         }
     }
 
-    public boolean deleteBook(Books book) {
-        return false;
+    public void deleteBook(Books book) {
+        if (this.listBooks.getListBooks().length > 0) {
+            for (int i = 0; i < this.listBooks.getListBooks().length; i++) {
+                if (this.listBooks.getListBooks()[i] != null) {
+                    if (this.listBooks.getListBooks()[i].getAuthor().equalsIgnoreCase(book.getAuthor().trim())
+                            && this.listBooks.getListBooks()[i].getTilte().equalsIgnoreCase(book.getTilte().trim())) {
+                        this.listBooks.getListBooks()[i] = null;
+                        JOptionPane.showMessageDialog(null, "Libro eliminado");
+                        break;
+                    }
+                }
+            }
+        }
+
+        System.out.println(Arrays.toString(this.showBooks()));
     }
 
     public Books[] showBooks() {
