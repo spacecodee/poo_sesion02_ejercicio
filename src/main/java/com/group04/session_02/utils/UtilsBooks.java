@@ -5,7 +5,6 @@ import com.group04.session_02.model.ListBooks;
 import java.awt.HeadlessException;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -70,8 +69,21 @@ public class UtilsBooks {
         return this.listBooks.getListBooks();
     }
 
-    public String showHigherQualiferBooks(Books book) {
-        return "";
+    public String showHigherQualiferBooks(float quality) {
+        var bookHigher = "";
+        System.out.println(this.listBooks.getListBooks()[0].getCalifications());
+        var mayor = this.listBooks.getListBooks()[0].getCalifications();
+
+        for (int i = 1; i < this.listBooks.getListBooks().length; i++) {
+            if (this.listBooks.getListBooks()[i] != null) {
+                if (this.listBooks.getListBooks()[i].getCalifications() > mayor) {
+                    bookHigher = this.listBooks.getListBooks()[i].getTilte() + ": "
+                            + this.listBooks.getListBooks()[i].getCalifications();
+                }
+            }
+        }
+
+        return bookHigher;
     }
 
     public String showSmallQualiferBooks(Books book) {

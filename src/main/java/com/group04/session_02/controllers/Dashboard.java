@@ -4,6 +4,8 @@ import com.group04.session_02.model.Books;
 import com.group04.session_02.model.ListBooks;
 import com.group04.session_02.utils.Texts;
 import com.group04.session_02.utils.UtilsBooks;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -15,6 +17,7 @@ public class Dashboard {
     private final ListBooks listBooks = new ListBooks();
     private final UtilsBooks utilsBooks = new UtilsBooks(this.listBooks);
     private Books book;
+    private final List<Books> booksNew = new ArrayList<>();
 
     public Dashboard() {
 
@@ -73,12 +76,11 @@ public class Dashboard {
             var nPaginas = Integer.parseInt(tbl.getValueAt(row, 2).toString());
             var qualify = Float.parseFloat(tbl.getValueAt(row, 3).toString());
 
-            var book = new Books(author, title, nPaginas, qualify);
-            this.utilsBooks.deleteBook(book);
+            var bookDelete = new Books(author, title, nPaginas, qualify);
+            this.utilsBooks.deleteBook(bookDelete);
             tbl.setModel(this.showToTable());
         } else {
             JOptionPane.showMessageDialog(null, "Por favor selecciona una fila a eliminar");
         }
     }
-
 }

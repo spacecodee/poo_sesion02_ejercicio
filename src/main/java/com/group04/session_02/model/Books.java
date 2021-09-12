@@ -7,7 +7,7 @@ import lombok.ToString;
 
 @ToString
 @EqualsAndHashCode
-public class Books {
+public class Books implements Comparable<Books> {
 
     @Getter
     @Setter
@@ -38,6 +38,19 @@ public class Books {
 
     public Books(byte califications) {
         this.califications = califications;
+    }
+
+    @Override
+    public int compareTo(Books o) {
+        if (this.getCalifications() < o.getCalifications()) {
+            return -1;
+        }
+
+        if (this.getCalifications() > o.getCalifications()) {
+            return 1;
+        }
+
+        return 0;
     }
 
 }
