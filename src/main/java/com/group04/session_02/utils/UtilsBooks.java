@@ -68,26 +68,4 @@ public class UtilsBooks {
     public Books[] showBooks() {
         return this.listBooks.getListBooks();
     }
-
-    public String showHigherQualiferBooks(float quality) {
-        var bookHigher = "";
-        System.out.println(this.listBooks.getListBooks()[0].getCalifications());
-        var mayor = this.listBooks.getListBooks()[0].getCalifications();
-
-        for (int i = 1; i < this.listBooks.getListBooks().length; i++) {
-            if (this.listBooks.getListBooks()[i] != null) {
-                if (this.listBooks.getListBooks()[i].getCalifications() > mayor) {
-                    bookHigher = this.listBooks.getListBooks()[i].getTilte() + ": "
-                            + this.listBooks.getListBooks()[i].getCalifications();
-                }
-            }
-        }
-
-        return bookHigher;
-    }
-
-    public String showSmallQualiferBooks(Books book) {
-        return "";
-    }
-
 }
