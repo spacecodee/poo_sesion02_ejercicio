@@ -97,6 +97,11 @@ public class Dashboard extends javax.swing.JFrame {
         btnClear.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnClear.setForeground(new java.awt.Color(51, 51, 51));
         btnClear.setText("Limpiar");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
 
         jspScroll.setBorder(null);
 
@@ -132,6 +137,11 @@ public class Dashboard extends javax.swing.JFrame {
         btnClearAll.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnClearAll.setForeground(new java.awt.Color(51, 51, 51));
         btnClearAll.setText("Limpiar todo");
+        btnClearAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearAllActionPerformed(evt);
+            }
+        });
 
         btnDelete.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(51, 51, 51));
@@ -241,6 +251,14 @@ public class Dashboard extends javax.swing.JFrame {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         this.dashboard.deleteBook(tblBooks);
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        this.dashboard.clear(this.cbxCalification, this.txtAuthor, this.txtTitle, this.txtNPages);
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void btnClearAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearAllActionPerformed
+        this.dashboard.clear(this.cbxCalification, this.tblBooks, this.txtAuthor, this.txtTitle, this.txtNPages);
+    }//GEN-LAST:event_btnClearAllActionPerformed
 
     private void initALl() {
         this.modelBooks = (DefaultTableModel) this.tblBooks.getModel();

@@ -5,6 +5,7 @@ import com.group04.session_02.model.ListBooks;
 import com.group04.session_02.utils.Texts;
 import com.group04.session_02.utils.UtilsBooks;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -60,6 +61,25 @@ public class Dashboard {
         cbx.setSelectedIndex(0);
         for (JTextField txt1 : txt) {
             txt1.setText(null);
+        }
+    }
+
+    public void clear(JComboBox cbx, JTable tbl, JTextField... txt) {
+        DefaultTableModel model = (DefaultTableModel) tbl.getModel();
+        if (tbl.getRowCount() > 0) {
+            for (int i = model.getRowCount() - 1; i >= 0; i--) {
+                model.removeRow(i);
+            }
+
+            for (int i = 0; i < this.utilsBooks.getListBooks().getListBooks().length; i++) {
+                if (this.utilsBooks.getListBooks().getListBooks()[i] != null) {
+                    this.utilsBooks.getListBooks().getListBooks()[i] = null;
+                }
+            }
+            this.clear(cbx, txt);
+            System.out.println(Arrays.toString(this.utilsBooks.getListBooks().getListBooks()));
+        } else {
+            JOptionPane.showMessageDialog(null, "Debes tener al menos 1 dato en la tabla");
         }
     }
 
